@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Packet Tracer actually teaches you — Kapeen Daniel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../blog.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="navwrap">
+            <a href="../../index.html" class="logo">kapeen<span>.</span>daniel</a>
+            <div class="navlinks">
+                <a href="../../index.html#about">about</a>
+                <a href="../../index.html#projects">projects</a>
+                <a href="../index.html" class="active">blog</a>
+                <a href="../../index.html#contact">contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="wrap post-body">
+        <a class="back-link" href="../index.html">← Back to blog</a>
+        <div class="post-meta">NETWORKING &nbsp;·&nbsp; 8 MIN READ</div>
+        <h1>What Packet Tracer actually teaches you</h1>
+
+        <p>It's easy to treat Packet Tracer as a drag-and-drop toy — drop a router, drop a switch, connect some cables,
+            watch a green light turn on. The actual value of it shows up later, once the topology gets big enough that
+            you can't just guess your way to a working network.</p>
+
+        <h2>The habit it builds</h2>
+        <p>Every lab eventually forces the same question: <strong>where does this packet actually go, and why?</strong>
+            Not "is the cable plugged in," but tracing a request from a device, through its default gateway, across a
+            routing table, and out the other side. Once you've done that enough times by hand, you stop thinking of a
+            network as a pile of devices and start thinking of it as a set of decisions every hop has to make correctly.
+        </p>
+
+        <h2>Where it connects to the software side</h2>
+        <p>This matters for the same reason RedCart's deployment setup mattered: an application doesn't run in a vacuum.
+            When something is slow or unreachable in production, "the network" is one of the first places to look, and
+            most developers have no instinct for it. Subnetting, VLANs, and routing aren't abstract trivia — they're the
+            layer underneath every API call I've ever made work.</p>
+
+        <h2>A small example</h2>
+        <p>One lab had two VLANs that couldn't reach each other even though both had working DHCP and correct IP
+            addressing. The fix wasn't a cabling issue — it was a missing inter-VLAN routing configuration on the Layer
+            3 switch. Nothing about the symptom pointed directly at the cause; finding it meant systematically ruling
+            out layers, starting from the physical connection and working up.</p>
+
+        <ul>
+            <li>Check Layer 1 first — is the link actually up?</li>
+            <li>Then Layer 2 — are the VLANs and switching correct?</li>
+            <li>Then Layer 3 — is routing actually configured between the segments that need to talk?</li>
+        </ul>
+
+        <p>That ordered-elimination habit is, honestly, the same debugging instinct I use in code. Packet Tracer just
+            makes you build it on infrastructure first.</p>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span>© 2026 Kapeen Daniel</span>
+            <span><a href="../../index.html" style="text-decoration:none; color:var(--text-dim);">← Back to
+                    portfolio</a></span>
+        </div>
+    </footer>
+
+</body>
+
+</html>

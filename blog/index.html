@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Kapeen Daniel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="blog.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="navwrap">
+            <a href="../index.html" class="logo">kapeen<span>.</span>daniel</a>
+            <div class="navlinks">
+                <a href="../index.html#about">about</a>
+                <a href="../index.html#projects">projects</a>
+                <a href="index.html" class="active">blog</a>
+                <a href="../index.html#contact">contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="wrap">
+        <div class="page-head">
+            <div class="eyebrow">blog</div>
+            <h1>Notes from the build.</h1>
+            <p class="lead">Write-ups on the projects I've shipped, networking labs, and what I'm learning along the way
+                to graduation in 2027.</p>
+        </div>
+
+        <div class="post-list">
+            <a class="post-card" href="posts/building-redcart.html">
+                <div class="post-meta">15 MIN READ &nbsp;·&nbsp; SOFTWARE</div>
+                <h2>Building RedCart: what a full-stack store actually takes</h2>
+                <p>Notes on wiring a TypeScript backend to a Prisma database, and the deployment decisions that actually
+                    mattered.</p>
+                <div class="tag-row"><span class="tag">TypeScript</span><span class="tag">Prisma</span><span
+                        class="tag">Deployment</span></div>
+            </a>
+
+            <a class="post-card" href="posts/medical-ai-notes.html">
+                <div class="post-meta">12 MIN READ &nbsp;·&nbsp; DATA ANALYSIS</div>
+                <h2>Teaching a model to read scans: notes on Medical AI</h2>
+                <p>How a Flask app ended up serving three different image classifiers, and what training them taught me
+                    about evaluation over accuracy.</p>
+                <div class="tag-row"><span class="tag">Python</span><span class="tag">TensorFlow</span><span
+                        class="tag">Flask</span></div>
+            </a>
+
+            <a class="post-card" href="posts/packet-tracer-lessons.html">
+                <div class="post-meta">8 MIN READ &nbsp;·&nbsp; NETWORKING</div>
+                <h2>What Packet Tracer actually teaches you</h2>
+                <p>It's not the GUI. It's the habit of asking "where does this packet actually go" before you touch a
+                    config.</p>
+                <div class="tag-row"><span class="tag">Networking</span><span class="tag">Cisco</span></div>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span>© 2026 Kapeen Daniel</span>
+            <span><a href="../index.html" style="text-decoration:none; color:var(--text-dim);">← Back to
+                    portfolio</a></span>
+        </div>
+    </footer>
+
+</body>
+
+</html>

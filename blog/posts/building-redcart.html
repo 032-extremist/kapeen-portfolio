@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building RedCart — Kapeen Daniel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../blog.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="navwrap">
+            <a href="../../index.html" class="logo">kapeen<span>.</span>daniel</a>
+            <div class="navlinks">
+                <a href="../../index.html#about">about</a>
+                <a href="../../index.html#projects">projects</a>
+                <a href="../index.html" class="active">blog</a>
+                <a href="../../index.html#contact">contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="wrap post-body">
+        <a class="back-link" href="../index.html">← Back to blog</a>
+        <div class="post-meta">SOFTWARE &nbsp;·&nbsp; 15 MIN READ</div>
+        <h1>Building RedCart: what a full-stack store actually takes</h1>
+
+        <p>When I started RedCart, I thought the hard part would be the storefront — product grids, a cart, checkout. It
+            wasn't. The hard part was everything underneath it that the user never sees: the data model, the boundary
+            between backend and frontend, and the fact that a store has to work the same way every single time, not just
+            on a good day.</p>
+
+        <h2>Starting with the data model</h2>
+        <p>I used <code>Prisma</code> as the ORM layer on top of a TypeScript backend, and the first real decision
+            wasn't a UI decision at all — it was deciding what a "product," an "order," and a "user" actually are, and
+            how they relate. Get that wrong early and every feature after it gets harder to build. Prisma's schema file
+            forced me to write that down explicitly before I could write a single API route, which turned out to be a
+            good constraint rather than a chore.</p>
+
+        <h2>Backend first, frontend second</h2>
+        <p>I built the backend as its own deployable service before touching the storefront UI. That meant I could test
+            the actual logic — adding items, calculating totals, handling stock — with simple requests, long before
+            there was anything to look at. By the time I started the frontend, I was building against an API that
+            already worked, instead of guessing at one.</p>
+
+        <h2>Deployment is part of the design</h2>
+        <p>RedCart's frontend is deployed on Vercel; the backend is set up to run on Netlify functions or Render,
+            depending on what's available. That flexibility wasn't an accident — early on I separated configuration from
+            code so the same backend could run in more than one place without rewriting anything. It's a small habit,
+            but it's the difference between a project that only runs on your laptop and one that's actually a product.
+        </p>
+
+        <h2>What I'd do differently</h2>
+        <ul>
+            <li>Write integration tests for the cart and checkout logic earlier — I caught two ordering bugs late that a
+                test suite would have caught on day one.</li>
+            <li>Decide on error-handling conventions (what the API returns on failure) before building more than two
+                routes, not after.</li>
+            <li>Document the Prisma schema relationships as I went, instead of relying on memory once the schema grew.
+            </li>
+        </ul>
+
+        <p>RedCart is still growing — next up is adding proper payment handling and order history. If you want to see it
+            in action, the <a href="https://redcart-frontend.vercel.app/" target="_blank" rel="noopener"
+                style="color:var(--accent);">live demo</a> is on the projects page.</p>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span>© 2026 Kapeen Daniel</span>
+            <span><a href="../../index.html" style="text-decoration:none; color:var(--text-dim);">← Back to
+                    portfolio</a></span>
+        </div>
+    </footer>
+
+</body>
+
+</html>

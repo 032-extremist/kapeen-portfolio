@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching a model to read scans — Kapeen Daniel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../blog.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="navwrap">
+            <a href="../../index.html" class="logo">kapeen<span>.</span>daniel</a>
+            <div class="navlinks">
+                <a href="../../index.html#about">about</a>
+                <a href="../../index.html#projects">projects</a>
+                <a href="../index.html" class="active">blog</a>
+                <a href="../../index.html#contact">contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="wrap post-body">
+        <a class="back-link" href="../index.html">← Back to blog</a>
+        <div class="post-meta">DATA ANALYSIS &nbsp;·&nbsp; 12 MIN READ</div>
+        <h1>Teaching a model to read scans: notes on Medical AI</h1>
+
+        <p>Medical AI started as a question: could I take publicly available imaging datasets and train models that
+            actually distinguish, say, a pneumonia-positive chest X-ray from a healthy one — and then wrap that in
+            something a non-technical person could use? The answer was yes, but the path there taught me more about
+            evaluation than about modeling.</p>
+
+        <h2>Three problems, three models</h2>
+        <p>The app ended up serving three separate classifiers: one for brain tumor detection, one for pneumonia, and
+            one for retinal conditions. Each was trained and saved as its own <code>.h5</code> model file, and the Flask
+            app routes incoming images to the right one based on what the user is checking for. Keeping them as separate
+            models, rather than one combined network, made each one easier to debug and re-train independently.</p>
+
+        <h2>Accuracy is the wrong first metric</h2>
+        <p>The biggest lesson here had nothing to do with TensorFlow syntax. On medical data, a model that's 95%
+            "accurate" can still be useless if it's wrong in the direction that matters — missing real positives. I had
+            to actually look at the confusion matrix, not just the headline accuracy number, before I trusted any of
+            these models enough to put them behind an interface.</p>
+
+        <h2>Serving a trained model is its own skill</h2>
+        <p>Training a model in a notebook and serving it reliably from a Flask endpoint are different problems. I had to
+            think about: how the uploaded image gets preprocessed to match exactly what the model was trained on, what
+            happens if someone uploads something that isn't a valid scan, and how to keep the <code>.h5</code> files
+            loading fast enough that the app doesn't feel sluggish on every request.</p>
+
+        <h2>What's next</h2>
+        <ul>
+            <li>Add confidence scores to the output, not just a label — a flat "positive/negative" hides how sure the
+                model actually is.</li>
+            <li>Build a small evaluation report for each model so the numbers are visible, not just trusted.</li>
+            <li>Look into model compression so the app starts faster on free-tier hosting.</li>
+        </ul>
+
+        <p>This one's a reminder that "data analysis" isn't just charts — it's the discipline of not trusting a number
+            until you've checked what's behind it.</p>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span>© 2026 Kapeen Daniel</span>
+            <span><a href="../../index.html" style="text-decoration:none; color:var(--text-dim);">← Back to
+                    portfolio</a></span>
+        </div>
+    </footer>
+
+</body>
+
+</html>
